@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071b17">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23c9f36b'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Arial,sans-serif' font-size='44' font-weight='700' fill='%23142116'%3EB%3C/text%3E%3C/svg%3E">
+  <title>Boundary — Cricket Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Boundary Cricket Club home"><span class="brand-mark">B</span><span>BOUNDARY<span class="brand-sub">CRICKET CLUB</span></span></a>
+      <div class="top-center"><span class="live-dot"></span><span id="match-status">MATCH DAY</span><span class="top-divider">/</span><span>EST. 2024</span></div>
+      <button class="icon-button" id="sound-toggle" aria-label="Toggle sound" title="Toggle sound">♫</button>
+    </header>
+
+    <section class="intro-row">
+      <div><p class="eyebrow">THE CITY LEAGUE <span>•</span> T20 SERIES</p><h1>THE <em>LAST</em><br class="mobile-break"> OVER.</h1></div>
+      <p class="intro-note">Every ball counts.<br>Make yours a big one.</p>
+    </section>
+
+    <section class="match-layout">
+      <div class="main-column">
+        <section class="scoreboard" aria-label="Match scoreboard">
+          <div class="score-team"><div class="team-badge home-badge" id="home-badge">R</div><div><span class="team-name" id="batting-team">ROYALS</span><span class="innings-tag" id="innings-label">1ST INNINGS</span></div></div>
+          <div class="score-main"><div class="score-numbers"><span id="runs">0</span><span class="score-slash">/</span><span id="wickets">0</span></div><div class="score-meta"><span id="overs">0.0</span> OVERS <span class="meta-sep">•</span> <span id="run-rate">RR 0.00</span></div></div>
+          <div class="target-block"><span class="target-label" id="target-label">TARGET</span><strong id="target">—</strong><small id="need-rate">10 OVERS</small></div>
+        </section>
+
+        <section class="stadium-card">
+          <div class="stadium-head"><div><span class="live-dot"></span><span id="ground-label">THE OVAL · LONDON</span></div><span class="weather">☀ &nbsp; 24° &nbsp; DRY PITCH</span></div>
+          <div class="scene-wrap"><canvas id="scene" aria-label="Cricket match field animation"></canvas><div class="scene-overlay" id="scene-message"><span class="whistle">✦</span><strong>YOUR INNINGS. YOUR CALL.</strong><small>Pick your approach, then face the first ball.</small></div><div class="ball-callout" id="ball-callout"></div></div>
+          <div class="stadium-foot"><div><span class="foot-label">CURRENT OVER</span><div class="ball-track" id="ball-track"></div></div><div class="commentary" id="commentary">The crowd is settling in. Time to make some noise.</div></div>
+        </section>
+
+        <section class="control-panel" id="controls">
+          <div class="panel-heading"><div><span class="eyebrow" id="control-eyebrow">CHOOSE YOUR SIDE</span><h2 id="control-title">How do you want to play?</h2></div><span class="control-hint" id="control-hint">10 overs · 2 innings</span></div>
+          <div class="setup-controls" id="setup-controls"><button class="side-card selected" data-side="bat"><span class="side-icon">↗</span><span class="side-name">BAT FIRST</span><span class="side-desc">Set a target. Put runs on the board.</span><span class="choose-dot"></span></button><button class="side-card" data-side="bowl"><span class="side-icon">⌁</span><span class="side-name">BOWL FIRST</span><span class="side-desc">Keep them quiet. Chase it down.</span><span class="choose-dot"></span></button><button class="primary-button" id="start-match">START MATCH <span>↗</span></button></div>
+          <div class="bat-controls hidden" id="bat-controls"><div class="control-group"><span class="control-label">SHOT SELECTION</span><div class="choice-row" id="shot-options"><button class="choice active" data-shot="ground">GROUND<span>SAFE</span></button><button class="choice" data-shot="loft">LOFT<span>BIG HITS</span></button><button class="choice" data-shot="defend">DEFEND<span>LOW RISK</span></button></div></div><div class="control-group"><span class="control-label">AIM YOUR SHOT</span><div class="aim-row" id="aim-options"><button class="aim active" data-aim="straight">↑<small>STRAIGHT</small></button><button class="aim" data-aim="leg">↗<small>LEG SIDE</small></button><button class="aim" data-aim="off">↖<small>OFF SIDE</small></button></div></div><button class="primary-button action-button" id="play-ball">FACE THE BALL <span>SPACE ↗</span></button><div class="timing-note">WATCH THE BALL — TAP SWING WHEN IT REACHES THE BAT</div></div>
+          <div class="bowl-controls hidden" id="bowl-controls"><div class="control-group"><span class="control-label">DELIVERY LINE</span><div class="choice-row" id="line-options"><button class="choice active" data-line="stumps">AT STUMPS<span>ATTACK</span></button><button class="choice" data-line="wide">OUTSIDE OFF<span>TRAP</span></button><button class="choice" data-line="leg">LEG SIDE<span>CRAMP</span></button></div></div><div class="control-group"><span class="control-label">PICK YOUR LENGTH</span><div class="aim-row lengths" id="length-options"><button class="aim active" data-length="good">◉<small>GOOD</small></button><button class="aim" data-length="short">⌁<small>SHORT</small></button><button class="aim" data-length="full">⌄<small>FULL</small></button></div></div><button class="primary-button action-button" id="bowl-ball">BOWL NEXT <span>SPACE ↗</span></button><div class="timing-note">MIX IT UP. THE BATTER IS WATCHING.</div></div>
+          <div class="between-controls hidden" id="between-controls"><p id="between-copy">Innings break — your target is set.</p><button class="primary-button" id="continue-match">START THE CHASE <span>↗</span></button></div>
+          <div class="result-controls hidden" id="result-controls"><p id="result-copy">Match complete.</p><button class="primary-button" id="new-match">PLAY AGAIN <span>↻</span></button></div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <section class="side-card-panel batsmen-panel"><div class="side-panel-head"><span>AT THE CREASE</span><span class="panel-icon">✳</span></div><div class="player-row"><span class="player-avatar avatar-one">JM</span><span class="player-info"><strong id="batter-one">J. MORGAN</strong><small id="batter-one-status">STRIKER</small></span><strong class="player-score" id="batter-one-score">0<span>(0)</span></strong></div><div class="player-row"><span class="player-avatar avatar-two">AK</span><span class="player-info"><strong id="batter-two">A. KHAN</strong><small id="batter-two-status">NON-STRIKER</small></span><strong class="player-score" id="batter-two-score">0<span>(0)</span></strong></div></section>
+        <section class="side-card-panel bowler-panel"><div class="side-panel-head"><span>WITH THE BALL</span><span class="panel-icon">◎</span></div><div class="bowler-info"><div class="bowler-avatar">RC</div><div><strong id="bowler-name">R. CHANDRA</strong><small>RIGHT ARM · FAST</small></div></div><div class="bowler-stats"><div><strong id="bowler-overs">0.0</strong><small>OVERS</small></div><div><strong id="bowler-runs">0</strong><small>RUNS</small></div><div><strong id="bowler-wickets">0</strong><small>WICKETS</small></div></div></section>
+        <section class="side-card-panel match-panel"><div class="side-panel-head"><span>MATCH DETAILS</span><span class="panel-icon">⌖</span></div><div class="detail-row"><span>FORMAT</span><strong>10 OVERS</strong></div><div class="detail-row"><span>VENUE</span><strong>THE OVAL, LONDON</strong></div><div class="detail-row"><span>BOUNDARY</span><strong>68 METRES</strong></div></section>
+        <div class="tip-card"><span class="tip-star">✳</span><div><strong>PRO TIP</strong><p id="tip-text">Lofted shots can clear the rope—but mistime one and you could be walking.</p></div></div>
+      </aside>
+    </section>
+    <footer><span>BOUNDARY CRICKET CLUB</span><span>PLAY THE MOMENT <b>✳</b></span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="game.js"></script>
+</body>
+</html>
